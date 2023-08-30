@@ -88,7 +88,7 @@ const Container = ({ navigation, route, options, back }) => {
                         size="full"
                         borderRadius="$none"
                         source={{
-                            uri : "https://picsum.photos/200/300",
+                            uri : uri || "https://picsum.photos/200/300",
                         }}
                     />
                 </Box>

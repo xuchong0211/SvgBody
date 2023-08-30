@@ -37,6 +37,7 @@ const UploadButton = ({onPress}: {onPress: (args: any) => void}) => {
     const handleClose = (type: number, uri: String) => {
         console.log("args", type);
         onPress({type, uri})
+        setShowActionSheet(false)
     }
     return (
         <Box flex={1}>

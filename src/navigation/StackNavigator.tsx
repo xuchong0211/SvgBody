@@ -4,11 +4,12 @@ import TabNavigator from "./TabNavigator";
 import UploadScreen from "./screen/UploadScreen";
 import HomeScreen2 from "./screen/HomeScreen2";
 import {Text} from "react-native";
+import CameraScreen from "./screen/CameraScreen";
 
 let Stack = createNativeStackNavigator() as const;
 
-// const initialRouteName = "Index";
-const initialRouteName = "Upload";
+const initialRouteName = "Index";
+// const initialRouteName = "Upload";
 
 function StackNavigator() {
   return (
@@ -17,6 +18,13 @@ function StackNavigator() {
         initialRouteName={initialRouteName}>
         <Stack.Screen name="Index" component={TabNavigator} />
 
+
+          <Stack.Group screenOptions={({ route, navigation }) => {
+              console.log("=================================================================", route);
+              return {title: "", headerShown: false}
+          }}>
+              <Stack.Screen name="Camera" component={CameraScreen}/>
+          </Stack.Group>
 
           <Stack.Group screenOptions={({ route, navigation }) => {
               console.log("=================================================================", route);
