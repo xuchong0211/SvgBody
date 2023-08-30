@@ -2,6 +2,8 @@ import { createConfig } from '@gluestack-style/react';
 import {config} from "@gluestack-ui/themed";
 
 export let PRIMARY_COLOR = "#e3116c" as const;
+export let TEXT_COLOR = "#b1b0b0" as const;
+export let ICON_COLOR = "#c4c4c4" as const;
 
 const theme = createConfig({
     ...config.theme,
