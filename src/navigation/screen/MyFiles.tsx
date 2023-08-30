@@ -148,7 +148,11 @@ const Container = ({ navigation }) => {
 
             </ScrollView>
             <UploadButton onPress={(type) => {
-                navigation.navigate("Upload", type)
+                if (params.type == 3) {
+                    navigation.navigate("Camera", params)
+                } else {
+                    navigation.navigate("Upload", params)
+                }
             }}/>
         </Box>
     );

@@ -42,7 +42,7 @@ const UploadButton = ({onPress}: {onPress: (args: any) => void}) => {
     return (
         <Box flex={1}>
             <Fab
-                size="lg"
+                size="sm"
                 placement="bottom right"
                 isDisabled={false}
                 bg={PRIMARY_COLOR}
