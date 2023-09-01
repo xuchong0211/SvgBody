@@ -2,7 +2,7 @@ import React from "react";
 import { Box, HStack, Image, Heading } from "@gluestack-ui/themed";
 import UploadButton from "../../component/UploadButton";
 import { ScrollView } from "@gluestack-ui/themed/build/components/Actionsheet/styled-components";
-import {ImageList} from "../../component/common/images";
+import { ImageList } from "../../component/common/images";
 
 export default function MyFiles(props) {
   return <Container {...props} />;
@@ -27,18 +27,18 @@ const Container = ({ navigation }) => {
         <ImageList title="Tuesday 19 April" number={3} />
       </ScrollView>
       <UploadButton
-          onPress={(params) => {
-            if (params.type == 2) {
-              console.log("2222222222222222222222222222222222222222")
-              navigation.navigate("Camera", params);
-            } else if (params.type == 3) {
-              console.log("333333333333333333333333333333333333333")
-              navigation.navigate("Camera", params);
-            } else {
-              console.log("11111111111111111111111111111111111")
-              navigation.navigate("Upload", params);
-            }
-          }}
+        onPress={(params) => {
+          if (params.type == 2) {
+            console.log("2222222222222222222222222222222222222222");
+            navigation.navigate("Camera", params);
+          } else if (params.type == 3) {
+            console.log("333333333333333333333333333333333333333");
+            navigation.navigate("Camera", params);
+          } else {
+            console.log("11111111111111111111111111111111111");
+            navigation.navigate("Upload", params);
+          }
+        }}
       />
     </Box>
   );

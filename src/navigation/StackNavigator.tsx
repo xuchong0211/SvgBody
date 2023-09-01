@@ -5,11 +5,12 @@ import UploadScreen from "./screen/UploadScreen";
 import HomeScreen2 from "./screen/HomeScreen2";
 import { Text } from "react-native";
 import CameraScreen from "./screen/CameraScreen";
+import BodySketchScreen from "./screen/BodySketchScreen";
 
 let Stack = createNativeStackNavigator() as const;
 
-const initialRouteName = "Index";
-// const initialRouteName = "Upload";
+// const initialRouteName = "Index";
+const initialRouteName = "Upload";
 
 function StackNavigator() {
   return (
@@ -42,6 +43,14 @@ function StackNavigator() {
       >
         <Stack.Screen name="Upload" component={UploadScreen} />
         <Stack.Screen name="Index2" component={HomeScreen2} />
+      </Stack.Group>
+
+      <Stack.Group
+        screenOptions={({ route, navigation }) => {
+          return { title: "Body", headerShown: true };
+        }}
+      >
+        <Stack.Screen name="BodySketch" component={BodySketchScreen} />
       </Stack.Group>
 
       {/*<Stack.Screen name="Upload" component={UploadStackNavigator} />*/}

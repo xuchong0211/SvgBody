@@ -4,12 +4,12 @@ import {
   ButtonText,
   Divider,
   HStack,
-  Image,
+  Image, Pressable,
   Text,
   Textarea,
   TextareaInput,
 } from "@gluestack-ui/themed";
-import React from "react";
+import React, {useState} from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { ICON_COLOR, PRIMARY_COLOR, TEXT_COLOR } from "../../theme";
 import { ScrollView } from "@gluestack-ui/themed/build/components/Actionsheet/styled-components";
@@ -101,7 +101,7 @@ const Container = ({ navigation, route, options, back }) => {
   console.log(route);
   console.log(options);
   console.log(back);
-  const { type, uri } = route?.params || {};
+  const { type, uri, body } = route?.params || {};
 
   return (
     <Box flex={0} backgroundColor="transparent" h="100%">
@@ -134,16 +134,23 @@ const Container = ({ navigation, route, options, back }) => {
               Location on the body
             </Text>
             <Text size="lg" color="$black">
-              Lower arm(left)
+              {body || ""}
             </Text>
           </Box>
 
-          <Box alignSelf="center" mr="$3">
+          <Box alignSelf="center" mr="$3" >
+          <Pressable
+            onPress={() => {
+              console.log("344444444444444444444444444444");
+              navigation.navigate("BodySketch", {slug: body});
+            }}
+          >
             <MaterialCommunityIcons
               name="chevron-right"
               color="black"
               size={ICON_SIZE}
             />
+          </Pressable>
           </Box>
         </HStack>
 
