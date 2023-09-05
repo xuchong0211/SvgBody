@@ -1,6 +1,6 @@
 import React from "react";
-import {Dimensions} from "react-native";
-import {Box, HStack, Image, Heading, Pressable} from "@gluestack-ui/themed";
+import { Dimensions } from "react-native";
+import { Box, HStack, Image, Heading, Pressable } from "@gluestack-ui/themed";
 import _range from "lodash/range";
 
 const COLUMN_COUNT = 4;
@@ -14,30 +14,39 @@ const h = "$16";
 
 const getEmptySpan = () => <Box w={w} h={h} mx="$2" my="$4" />;
 
-const getImage = (uri?: String) => (
+const getImage = (uri?: String, onPress?: (uri) => void) => (
   <Box w={w} h={h} mx="$2" my="$4">
-    <Image
-      size="md"
-      borderRadius="$none"
-      source={{
-        // uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-        uri: uri || "https://picsum.photos/200/300",
+    <Pressable
+      onPress={() => {
+        if (onPress) {
+          onPress(uri || "https://picsum.photos/200/300");
+        }
       }}
-    />
+    >
+      <Image
+        size="md"
+        borderRadius="$none"
+        source={{
+          // uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+          uri: uri || "https://picsum.photos/200/300",
+        }}
+      />
+    </Pressable>
   </Box>
 );
-const getImages = (number) => _range(number).map(() => getImage());
+const getImages = (number, onPress) =>
+  _range(number).map(() => getImage(null, onPress));
 
 export const ImageList = ({
   title,
   number,
-  // onPress,
+  onPress,
 }: {
   title: String;
   number: number;
-  // onPress?: (uri: string) => void;
+  onPress?: (uri: string) => void;
 }) => {
-  const images = getImages(number);
+  const images = getImages(number, onPress);
 
   const span =
     images.length == COLUMN_COUNT

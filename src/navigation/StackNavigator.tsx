@@ -52,8 +52,7 @@ function StackNavigator() {
                   name="cached"
                   color="grey"
                   size={32}
-                  onPress={() => {
-                  }}
+                  onPress={() => {}}
                 />
               );
             },
