@@ -6,6 +6,8 @@ import HomeScreen2 from "./screen/HomeScreen2";
 import CameraScreen from "./screen/CameraScreen";
 import BodySketchScreen from "./screen/BodySketchScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Box, VStack, Text } from "@gluestack-ui/themed";
+import dayjs from "dayjs";
 
 let Stack = createNativeStackNavigator() as const;
 
@@ -30,10 +32,42 @@ function StackNavigator() {
 
       <Stack.Group
         screenOptions={({ route, navigation }) => {
-          return { title: route?.params?.uri || "Upload", headerShown: true };
+          return {
+            title: route?.params?.uri || "Upload",
+
+          headerTitleAlign: "center",
+            headerShown: true,
+          };
         }}
       >
-        <Stack.Screen name="Upload" component={UploadScreen} />
+        <Stack.Screen
+          name="Upload"
+          component={UploadScreen}
+          options={{
+            headerTitle: (props) => {
+              return (
+                <VStack justifyContent="center" alignItems="center">
+                    <Box>
+                        <Text size="lg" bold>25832</Text>
+                    </Box>
+                    <Box>
+                        <Text>{dayjs().format("MM-DD-YY hh:mm")}</Text>
+                    </Box>
+                </VStack>
+              );
+            },
+            headerRight: (...args) => {
+              return (
+                <MaterialCommunityIcons
+                  name="trash-can"
+                  color="grey"
+                  size={32}
+                  onPress={() => {}}
+                />
+              );
+            },
+          }}
+        />
         <Stack.Screen name="Index2" component={HomeScreen2} />
       </Stack.Group>
 
