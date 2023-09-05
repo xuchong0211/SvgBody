@@ -24,12 +24,20 @@ const getImage = (uri?: String) => (
 );
 
 const Container = ({ navigation, route, options, back }) => {
+  // const onPress = (uri) => {
+  //     console.log("uri 333333333333333333", uri);
+  //     navigation.navigate("Upload", {type: 2, uri })
+  // };
   return (
     <Box flex={1} backgroundColor="$white">
       <ScrollView px="$5" h="100%" mb="$2">
         <ImageList title="Today" number={6} />
         <ImageList title="Yesterday" number={4} />
         <ImageList title="Tuesday 19 April" number={3} />
+
+          {/*<ImageList title="Today" number={6} onPress={onPress} />*/}
+          {/*<ImageList title="Yesterday" number={4} onPress={onPress} />*/}
+          {/*<ImageList title="Tuesday 19 April" number={3} onPress={onPress} />*/}
       </ScrollView>
       <UploadButton
         onPress={(params) => {
@@ -40,7 +48,7 @@ const Container = ({ navigation, route, options, back }) => {
             console.log("333333333333333333333333333333333333333");
             navigation.navigate("Camera", params);
           } else {
-            console.log("11111111111111111111111111111111111");
+            console.log("11111111111111111111111111111111111", params);
             navigation.navigate("Upload", params);
           }
         }}

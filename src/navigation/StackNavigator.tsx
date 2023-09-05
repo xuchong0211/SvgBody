@@ -3,14 +3,14 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./TabNavigator";
 import UploadScreen from "./screen/UploadScreen";
 import HomeScreen2 from "./screen/HomeScreen2";
-import { Text } from "react-native";
 import CameraScreen from "./screen/CameraScreen";
 import BodySketchScreen from "./screen/BodySketchScreen";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 let Stack = createNativeStackNavigator() as const;
 
-// const initialRouteName = "Index";
-const initialRouteName = "Upload";
+const initialRouteName = "Index";
+// const initialRouteName = "Upload";
 
 function StackNavigator() {
   return (
@@ -22,10 +22,6 @@ function StackNavigator() {
 
       <Stack.Group
         screenOptions={({ route, navigation }) => {
-          console.log(
-            "=================================================================",
-            route,
-          );
           return { title: "", headerShown: false };
         }}
       >
@@ -34,11 +30,7 @@ function StackNavigator() {
 
       <Stack.Group
         screenOptions={({ route, navigation }) => {
-          console.log(
-            "=================================================================",
-            route,
-          );
-          return { title: route?.params?.uri || "123", headerShown: true };
+          return { title: route?.params?.uri || "Upload", headerShown: true };
         }}
       >
         <Stack.Screen name="Upload" component={UploadScreen} />
@@ -50,10 +42,25 @@ function StackNavigator() {
           return { title: "Body", headerShown: true };
         }}
       >
-        <Stack.Screen name="BodySketch" component={BodySketchScreen} />
+        <Stack.Screen
+          name="BodySketch"
+          options={() => ({
+            title: "Select location",
+            headerRight: (...args) => {
+              return (
+                <MaterialCommunityIcons
+                  name="cached"
+                  color="grey"
+                  size={32}
+                  onPress={() => {
+                  }}
+                />
+              );
+            },
+          })}
+          component={BodySketchScreen}
+        />
       </Stack.Group>
-
-      {/*<Stack.Screen name="Upload" component={UploadStackNavigator} />*/}
     </Stack.Navigator>
   );
 }

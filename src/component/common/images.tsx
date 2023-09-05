@@ -1,6 +1,6 @@
 import React from "react";
-import { Dimensions } from "react-native";
-import { Box, HStack, Image, Heading } from "@gluestack-ui/themed";
+import {Dimensions} from "react-native";
+import {Box, HStack, Image, Heading, Pressable} from "@gluestack-ui/themed";
 import _range from "lodash/range";
 
 const COLUMN_COUNT = 4;
@@ -31,9 +31,11 @@ const getImages = (number) => _range(number).map(() => getImage());
 export const ImageList = ({
   title,
   number,
+  // onPress,
 }: {
   title: String;
   number: number;
+  // onPress?: (uri: string) => void;
 }) => {
   const images = getImages(number);
 

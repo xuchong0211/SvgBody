@@ -102,8 +102,8 @@ function Container({ navigation, route, options, back }) {
             isDisabled={false}
             isPressed={false}
             onPress={() => {
-              navigation.goBack();
-              navigation.navigate("Upload", { type: 2, uri: photo.uri });
+              // navigation.goBack();
+              navigation.replace("Upload", { type: 2, uri: photo.uri });
             }}
           >
             <MaterialCommunityIcons name="check" color="black" size={32} />

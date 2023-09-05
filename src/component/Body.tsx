@@ -5,82 +5,85 @@ import { bodyFront } from "./body/assets/bodyFront";
 import { useCallback, useState } from "react";
 import differenceWith from "ramda/src/differenceWith";
 import { PRIMARY_COLOR } from "../theme";
-import {Box, Button, ButtonText, GluestackUIProvider, Heading} from "@gluestack-ui/themed";
+import {
+  Box,
+  Button,
+  ButtonText,
+  Divider,
+  GluestackUIProvider,
+  Heading,
+} from "@gluestack-ui/themed";
+
+import capitalize from "lodash/capitalize";
 
 export type Slug =
   | "abs"
-//done
+  //done
   | "adductors"
   | "left adductor"
   | "right adductors"
-//done
+  //done
   | "ankles"
   | "left ankle"
   | "right ankle"
-//done
+  //done
   | "biceps"
   | "left bicep"
   | "right bicep"
-//done
+  //done
   | "calves"
   | "left calve"
   | "right calve"
-//done
+  //done
   | "chest"
   | "left chest"
   | "right chest"
-//done
+  //done
   | "deltoids"
   | "left deltoids"
   | "right deltoids"
-//done
+  //done
   | "feet"
   | "left foot"
   | "right foot"
-//done
+  //done
   | "forearm"
   | "left forearm"
   | "right forearm"
-
   | "gluteal"
-
   | "hamstring"
-//done
+  //done
   | "hands"
   | "left hand"
   | "right hand"
-
   | "hair"
   | "head"
-//done
+  //done
   | "knees"
   | "left knee"
   | "right knee"
-
   | "lower-back"
-
   | "neck"
-//done
+  //done
   | "obliques"
   | "left oblique"
   | "right oblique"
-//done
+  //done
   | "quadriceps"
   | "left quadriceps"
   | "right quadriceps"
-//done
+  //done
   | "tibialis"
   | "left tibialis"
   | "right tibialis"
-//done
+  //done
   | "trapezius"
   | "left trapezius"
   | "right trapezius"
-//done
+  //done
   | "triceps"
   | "left triceps"
   | "right triceps"
-
   | "upper-back";
 
 export interface BodyPart {
@@ -169,13 +172,26 @@ BodySketch.defaultProps = {
 //   },
 // });
 
-export default function Body({slug}: {slug?: Slug}) {
-    console.log("344444444444444444444444444444", slug);
-  const [bodyPartSelected, setBodyPartSelected] = useState(slug ? { slug, intensity: 2 } : null);
+export const camelCap = (str: string) =>
+  str.split(" ").map(capitalize).join(" ");
+
+export default function Body({
+  slug,
+  onConfirm,
+}: {
+  slug?: Slug;
+  onConfirm: (slug: Slug) => void;
+}) {
+  const [bodyPartSelected, setBodyPartSelected] = useState<{
+    slug: Slug;
+    intensity: number;
+  } | null>(slug ? { slug, intensity: 2 } : null);
   return (
     <GluestackUIProvider>
-      <Box w="100%" bg="$blue100">
-        <Heading py="$2">Body {bodyPartSelected ? ` -- ${bodyPartSelected.slug}` : ""}</Heading>
+      <Box alignItems="center">
+        <Heading py="$2">
+          {bodyPartSelected ? `${camelCap(bodyPartSelected.slug)}` : " "}
+        </Heading>
       </Box>
       <Box justifyContent="center" alignItems="center" flex={1}>
         <BodySketch
@@ -186,20 +202,24 @@ export default function Body({slug}: {slug?: Slug}) {
           scale={1.5}
         />
       </Box>
-    <Box justifyContent="center" alignItems="center" py="$4">
+
+      <Divider my="$0.5" hardShadow="$1" />
+      <Box justifyContent="center" alignItems="center" py="$4" hardShadow="$5">
         <Button
-            bg={PRIMARY_COLOR}
-            w="60%"
-            size="md"
-            variant="solid"
-            action="primary"
-            isDisabled={!bodyPartSelected}
-            isFocusVisible={false}
-            onPress={() => {console.log("11111111111111")}}
+          bg={PRIMARY_COLOR}
+          w="90%"
+          size="md"
+          variant="solid"
+          action="primary"
+          isDisabled={!bodyPartSelected}
+          isFocusVisible={false}
+          onPress={() => {
+            onConfirm(bodyPartSelected?.slug);
+          }}
         >
-            <ButtonText> OK </ButtonText>
+          <ButtonText>Confirm location</ButtonText>
         </Button>
-        </Box>
+      </Box>
     </GluestackUIProvider>
   );
 }
