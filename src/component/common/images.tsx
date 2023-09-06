@@ -12,14 +12,20 @@ const h = "$16";
 // const w = "20%";
 // const h = "$20";
 
+function randomIntFromInterval(min, max) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 const getEmptySpan = () => <Box w={w} h={h} mx="$2" my="$4" />;
 
-const getImage = (uri?: String, onPress?: (uri) => void) => (
-  <Box w={w} h={h} mx="$2" my="$4">
+const getImage = (uri?: String, onPress?: (uri) => void) => {
+    const link = uri || `https://picsum.photos/${randomIntFromInterval(197, 203)}/${randomIntFromInterval(297, 303)}`;
+    // const link = uri || "https://picsum.photos/200/300";
+  return <Box w={w} h={h} mx="$2" my="$4">
     <Pressable
       onPress={() => {
         if (onPress) {
-          onPress(uri || "https://picsum.photos/200/300");
+          onPress(link);
         }
       }}
     >
@@ -27,13 +33,13 @@ const getImage = (uri?: String, onPress?: (uri) => void) => (
         size="md"
         borderRadius="$none"
         source={{
-          // uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-          uri: uri || "https://picsum.photos/200/300",
+          uri: link,
         }}
       />
     </Pressable>
-  </Box>
-);
+  </Box>;
+
+}
 const getImages = (number, onPress) =>
   _range(number).map(() => getImage(null, onPress));
 
