@@ -21,12 +21,13 @@ const Container = ({ navigation, route, options, back }) => {
       </ScrollView>
       <UploadButton
         onPress={(params) => {
+          console.log("upload ", params);
           if (params.type == 2) {
             navigation.navigate("Camera", params);
           } else if (params.type == 3) {
             navigation.navigate("Camera", params);
           } else {
-            navigation.navigate("Upload", params);
+            navigation.navigate("ImageManipulate", params);
           }
         }}
       />

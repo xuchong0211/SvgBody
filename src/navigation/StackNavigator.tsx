@@ -8,11 +8,13 @@ import BodySketchScreen from "./screen/BodySketchScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Box, VStack, Text } from "@gluestack-ui/themed";
 import dayjs from "dayjs";
+import ImageManipulateScreen from "./screen/ImageManipulateScreen";
 
 let Stack = createNativeStackNavigator() as const;
 
 const initialRouteName = "Index";
 // const initialRouteName = "Upload";
+// const initialRouteName = "BodySketch";
 
 function StackNavigator() {
   return (
@@ -32,10 +34,21 @@ function StackNavigator() {
 
       <Stack.Group
         screenOptions={({ route, navigation }) => {
+          return { title: "", headerShown: false };
+        }}
+      >
+        <Stack.Screen
+          name="ImageManipulate"
+          component={ImageManipulateScreen}
+        />
+      </Stack.Group>
+
+      <Stack.Group
+        screenOptions={({ route, navigation }) => {
           return {
             title: route?.params?.uri || "Upload",
 
-          headerTitleAlign: "center",
+            headerTitleAlign: "center",
             headerShown: true,
           };
         }}
@@ -47,12 +60,14 @@ function StackNavigator() {
             headerTitle: (props) => {
               return (
                 <VStack justifyContent="center" alignItems="center">
-                    <Box>
-                        <Text size="lg" bold>25832</Text>
-                    </Box>
-                    <Box>
-                        <Text>{dayjs().format("MM-DD-YY hh:mm")}</Text>
-                    </Box>
+                  <Box>
+                    <Text size="lg" bold>
+                      25832
+                    </Text>
+                  </Box>
+                  <Box>
+                    <Text>{dayjs().format("MM-DD-YY hh:mm")}</Text>
+                  </Box>
                 </VStack>
               );
             },
